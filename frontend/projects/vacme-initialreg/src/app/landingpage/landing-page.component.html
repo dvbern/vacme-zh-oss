@@ -1,0 +1,81 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='full-wdith'>
+    <div class="centered-content">
+
+        <!-- Ueberschrift -->
+        <div class="row">
+            <h4 class='i5' translate>LANDINGPAGE.TITLE</h4>
+        </div>
+
+        <!-- Genereal Infomessage Intro -->
+        <div class="row mb-2" *ngIf="showGeneralInfomessage()">
+            <div class='info-box margin-bottom-15 margin-top-30'>
+                <p [innerHTML]="generalInfoMessage">
+                </p>
+            </div>
+        </div>
+
+        <!-- Onboarding Intro -->
+        <div class="row mb-2" *ngIf="showOnboardingWelcomeText()">
+            <div class='info-box margin-bottom-15 margin-top-30'>
+                <p>
+                    {{'LANDINGPAGE.ONBOARDING_WELCOME' | translate}}
+                </p>
+                <p style="margin-bottom: 0;">
+                    <a routerLink="/onboarding" translate>LANDINGPAGE.ONBOARDING_WELCOME_BUTTON</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Kein freier Termin -->
+        <div class="row" *ngIf="noAvailableTermin" >
+            <div class='available-termin-box margin-bottom-15 margin-top-30'>
+                <div class="available-termin-box-content">
+                    <img class='alert mark-icon' src='img/Explanation Mark.svg'>
+                    {{'LANDINGPAGE.NO_TERMIN' | translate}}
+                </div>
+            </div>
+        </div>
+
+        <!-- Login / neu registrieren -->
+        <ng-container *ngIf="!isAlreadyLoggedIn()">
+            <div class="row margin-bottom-30 margin-top-30">
+                <p class="limited-text-size" translate>LANDINGPAGE.LOGIN_TEXT</p>
+                <lib-button buttonKind="go-next" (clickIfEnabled)="triggerKeycloakLogin()"
+                            translationKey="LANDINGPAGE.LOGIN_BUTTON"></lib-button>
+            </div>
+            <div class="row margin-top-30">
+                <div class="separator" translate>LANDINGPAGE.ODER</div>
+            </div>
+        </ng-container>
+        <div class="row margin-top-30">
+            <ng-container *ngIf="!isAlreadyLoggedIn(); else buttonWeiter">
+                <p class="limited-text-size" translate>LANDINGPAGE.REGISTER_TEXT</p>
+                <lib-button-navigate class="test" buttonKind="secondary" goto="/impffaehigkeit"
+                                     translationKey="LANDINGPAGE.REGISTER_BUTTON"></lib-button-navigate>
+            </ng-container>
+            <!-- wenn man nach login in keycloak direkt die page oeffnet wird nur ein weiterbutton angezeigt -->
+            <ng-template #buttonWeiter>
+                <lib-button-navigate class="test" buttonKind="secondary" goto="/impffaehigkeit"
+                                     translationKey="LANDINGPAGE.REGISTER_BUTTON_CONTINUE"></lib-button-navigate>
+            </ng-template>
+
+        </div>
+    </div>
+</div>
