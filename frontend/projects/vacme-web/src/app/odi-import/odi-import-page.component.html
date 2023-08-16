@@ -1,0 +1,53 @@
+<!--
+  ~ Copyright (C) 2022 DV Bern AG, Switzerland
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<div class='detailpage'>
+    <div class='main-column'>
+        <h4 class='i5' translate>FACH-APP.ODI-IMPORT.TITLE</h4>
+
+        <p class="description" translate>FACH-APP.ODI-IMPORT.DESCRIPTION</p>
+
+        <ul>
+            <li><a href="{{linkToTemplate()}}" target="_blank" class="text-link-list" translate>FACH-APP.ODI-IMPORT.TEMPLATE_TEXT</a>
+            </li>
+        </ul>
+
+        <form (ngSubmit)="upload()">
+            <div class="row">
+                <ngx-file-drop dropZoneClassName="filedrop filedrop-massenimport" dropZoneLabel="Drop files here"
+                               (onFileDrop)="dropped($event)"
+                               accept=".xlsx" [multiple]="false">
+                    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                        <button class="secondary"
+                                type="button"
+                                style="max-width: 250px;"
+                                (click)="openFileSelector()">
+                            <span translate>FACH-APP.KONTROLLE.UPLOAD_BUTTON</span>
+                        </button>
+                        <span *ngIf="selectedFile" style="color: #0a0a0a;">{{selectedFile.name}}</span>
+                    </ng-template>
+                </ngx-file-drop>
+            </div>
+
+
+            <div style="display: flex;">
+                <lib-button-navigate buttonKind="go-back" goto="/" translationKey="IMPFDOK.ZURUECK"></lib-button-navigate>
+                <lib-button buttonKind="submit" [disabled]="!selectedFile" translationKey="FACH-APP.ODI-IMPORT.IMPORTIEREN"></lib-button>
+            </div>
+        </form>
+    </div>
+</div>

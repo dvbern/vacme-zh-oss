@@ -1,0 +1,14 @@
+{
+    "FACH-APP": {
+        "START-PAGE": {
+            "SUCHE_MIT_PERSONALIEN_UVCI": "Recherche d’une personne vaccinée par son prénom, son nom, sa date de naissance et UVCI"
+        }
+    },
+    "GEIMPFT": {
+        "WEITERE_IMPFUNG_WAHRNEHMEN": "Documenter la vaccination Covid",
+        "GOTO_KONTROLLE": "Documenter la vaccination Covid"
+    },
+    "KONTROLLE": {
+        "SELBSTZAHLER_INFO": "Les personnes vaccinées doivent payer les vaccins COVID directement sur place, sauf exceptionnellement pour des raisons médicales. Veuillez consulter les recommandations actuelles en matière de vaccination <a target='_blank' href='https://www.zh.ch/en/gesundheit/coronavirus/coronavirus-impfung.html'>ICI</a>"
+    }
+}
